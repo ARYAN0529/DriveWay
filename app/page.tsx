@@ -1,3 +1,5 @@
+import BookingModal from "@/components/BookingModal";
+
 // Services live right here for now. Move them to their own file only when you need to share them.
 const SERVICES = [
   { id: "express", name: "Express Exterior", desc: "Foam wash, rinse, wipe-down, tyre shine.", price: 299 },
@@ -98,11 +100,8 @@ export default function Home() {
         </ol>
       </section>
 
-      {/* Placeholder call-to-action. The real booking form comes later, when you ask for it. */}
-      <section id="book" className="scroll-mt-20 bg-water/20 px-6 py-24 text-center">
-        <h2 className="font-display text-4xl md:text-5xl">Ready for the shine?</h2>
-        <p className="mx-auto mt-4 max-w-md text-foam/70">Booking opens soon. Check back shortly.</p>
-      </section>
+      {/* Opens whenever the URL hash becomes #book (every "Book" link on the page) */}
+      <BookingModal />
 
       <footer className="border-t border-white/10 px-6 py-10 text-center text-sm text-foam/50">
         © 2026 DriveWay, Jaipur

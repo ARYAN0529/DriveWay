@@ -1,4 +1,5 @@
 import BookingModal from "@/components/BookingModal";
+import WhatsAppButton, { WHATSAPP_NUMBER } from "@/components/WhatsAppButton";
 
 // Services live right here for now. Move them to their own file only when you need to share them.
 const SERVICES = [
@@ -103,8 +104,59 @@ export default function Home() {
       {/* Opens whenever the URL hash becomes #book (every "Book" link on the page) */}
       <BookingModal />
 
-      <footer className="border-t border-white/10 px-6 py-10 text-center text-sm text-foam/50">
-        © 2026 DriveWay, Jaipur
+      <footer className="border-t border-white/10 bg-black/20">
+        <div className="mx-auto grid max-w-6xl gap-12 px-6 py-16 md:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
+          {/* Brand + WhatsApp button */}
+          <div>
+            <a href="#" className="font-display text-2xl tracking-tight">Drive<span className="text-sun">Way</span></a>
+            <p className="mt-4 max-w-xs text-sm text-foam/60">
+              Doorstep car care in Jaipur. We bring the water, the tools and the shine to wherever you park.
+            </p>
+            <WhatsAppButton
+              message="Hi DriveWay, I have a question about your car wash service."
+              className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#25D366] px-5 py-2.5 text-sm font-semibold text-ink transition hover:brightness-110"
+            >
+              Chat on WhatsApp
+            </WhatsAppButton>
+          </div>
+
+          {/* Both link lists are generated from the same arrays used above, so they never go stale */}
+          <nav aria-label="Footer">
+            <h3 className="text-xs uppercase tracking-[0.2em] text-sun">Explore</h3>
+            <ul className="mt-4 grid gap-3 text-sm text-foam/60">
+              {NAV.map(([label, href]) => (
+                <li key={href}><a href={href} className="transition hover:text-sun">{label}</a></li>
+              ))}
+            </ul>
+          </nav>
+
+          <div>
+            <h3 className="text-xs uppercase tracking-[0.2em] text-sun">Services</h3>
+            <ul className="mt-4 grid gap-3 text-sm text-foam/60">
+              {SERVICES.map((s) => (
+                <li key={s.id}><a href="#services" className="transition hover:text-sun">{s.name}</a></li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact: phone comes from the same constant as the WhatsApp button. Email + hours are placeholders. */}
+          <div>
+            <h3 className="text-xs uppercase tracking-[0.2em] text-sun">Contact</h3>
+            <ul className="mt-4 grid gap-3 text-sm text-foam/60">
+              <li><a href={`tel:+${WHATSAPP_NUMBER}`} className="transition hover:text-sun">+{WHATSAPP_NUMBER.slice(0, 2)} {WHATSAPP_NUMBER.slice(2)}</a></li>
+              <li><a href="mailto:hello@driveway.example" className="transition hover:text-sun">hello@driveway.example</a></li>
+              <li>Daily, 7 AM to 7 PM</li>
+              <li>Jaipur, Rajasthan</li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="border-t border-white/10 px-6 py-6">
+          <div className="mx-auto flex max-w-6xl flex-wrap justify-between gap-2 text-xs text-foam/40">
+            <p>© 2026 DriveWay. All rights reserved.</p>
+            <p>Doorstep car wash, Jaipur</p>
+          </div>
+        </div>
       </footer>
     </main>
   );

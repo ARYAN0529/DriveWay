@@ -1,17 +1,21 @@
 @import "tailwindcss";
 
-/* Premium palette: near-black base, champagne-gold accent.
-   Change a value here and every bg-*, text-*, border-* class using it updates. */
+/* Design tokens. Each one becomes utility classes: --color-sun -> bg-sun, text-sun, border-sun... */
 @theme inline {
-  --color-ink: #07121a;
-  --color-water: #0e5a73;
-  --color-foam: #f4f9fb;
-  --color-sun: #d4af6a;   /* gold; BookingForm's button uses this */
-  --color-line: #c9dde5;
+  --color-ink: #0b0c0e;   /* near-black charcoal base */
+  --color-foam: #f2efe9;  /* soft warm white text */
+  --color-sun: #c9a45c;   /* champagne gold, used sparingly */
   --font-display: var(--font-fraunces);
   --font-sans: var(--font-dmsans);
 }
 
-html { scroll-behavior: smooth; }
+/* scroll-padding keeps anchor targets from hiding under the 64px sticky header */
+html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
 body { background: var(--color-ink); color: var(--color-foam); }
-:focus-visible { outline: 3px solid var(--color-sun); outline-offset: 2px; }
+:focus-visible { outline: 2px solid var(--color-sun); outline-offset: 3px; }
+
+/* Respect people who ask their device for less motion */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
